@@ -738,6 +738,7 @@ const Simulateur = () => {
               cash: cash.volatility / Math.sqrt(12),
               other: other.volatility / Math.sqrt(12),
             };
+            let monthlyReturns: AllocationMap;
 
             // Génération des rendements corrélés
             const monthlyReturns = generateCorrelatedReturns(
