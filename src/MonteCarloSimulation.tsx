@@ -2031,7 +2031,17 @@ const Simulateur = () => {
                 <div className="space-y-6">
                   {Object.entries(stressTestResults).map(
                     ([crisisKey, crisis]) => {
-                      const typedCrisis = crisis as { name: string };
+                      const typedCrisis = crisis as {
+    name: string;
+    duration: number;
+    recoveryTime: number;
+    impacts: Record<string, number>;
+    results: {
+      mean: number;
+      median: number;
+      worstCase: number;
+      lossProbability: number;
+    };
 
                       return (
                       <div
