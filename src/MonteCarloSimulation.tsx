@@ -1457,69 +1457,74 @@ const Simulateur = () => {
 
             <div className="w-full">
               {/* Graphique Timeline */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium mb-4">
-                  Évolution Mensuelle du Patrimoine
-                </h3>
-                <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <>
-                    <LineChart data={timelineData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis
-                        dataKey="date"
-                        tickFormatter={(value) => `A${value.split("-")[0]}`}
-                        interval="preserveStartEnd"
-                      />
-                      <YAxis tickFormatter={formatEuro} />
-                      <Tooltip
-                        labelFormatter={(value) => {
-                          const item = timelineData.find(
-                            (t) => t.date === value
-                          );
-                          return item ? item.dateLabel : value;
-                        }}
-                        formatter={(value, name) => {
-                          if (name === "valueEnd")
-                            return [formatEuro(value), "Patrimoine"];
-                          return [formatEuro(value), name];
-                        }}
-                      />
-                      {["accumulation", "consumption"].map((phaseKey) => (
-                        <Line
-                          key={phaseKey}
-                          type="monotone"
-                          dataKey={(d) =>
-                            d.phase === phaseKey ? d.valueEnd : null
-                          }
-                          stroke={
-                            phaseKey === "accumulation" ? "#10B981" : "#EF4444"
-                          } // vert ou rouge
-                          strokeWidth={2}
-                          dot={false}
-                          name={
-                            phaseKey === "accumulation"
-                              ? "Accumulation"
-                              : "Consommation"
-                          }
-                          connectNulls
-                        />
-                      ))}
-                    </LineChart>
-                    <div className="flex gap-4 mt-2 text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
-                        Accumulation
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
-                        Consommation
-                      </div>
-                    </div>
-                       </>
-                  </ResponsiveContainer>
-                </div>
-              </div>
+         <div className="bg-white p-6 rounded-lg shadow-sm">
+  <h3 className="text-lg font-medium mb-4">
+    Évolution Mensuelle du Patrimoine
+  </h3>
+  
+  <div className="h-80">
+    {/* ResponsiveContainer pour que le graphique s'adapte à la taille du conteneur */}
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={timelineData}>
+        {/* Grille en arrière-plan avec des lignes pointillées */}
+        <CartesianGrid strokeDasharray="3 3" />
+        
+        {/* Axe X : affiche les dates au format "A2024" */}
+        <XAxis 
+          dataKey="date" 
+          tickFormatter={(value) => `A${value.split("-")[0]}`}
+          interval="preserveStartEnd" 
+        />
+        
+        {/* Axe Y : affiche les valeurs en format euro */}
+        <YAxis tickFormatter={formatEuro} />
+        
+        {/* Tooltip personnalisé qui affiche les détails au survol */}
+        <Tooltip 
+          labelFormatter={(value) => {
+            const item = timelineData.find((t) => t.date === value);
+            return item ? item.dateLabel : value;
+          }}
+          formatter={(value, name) => {
+            if (name === "valueEnd") return [formatEuro(value), "Patrimoine"];
+            return [formatEuro(value), name];
+          }}
+        />
+        
+        {/* Génération des lignes pour chaque phase (accumulation et consommation) */}
+        {["accumulation", "consumption"].map((phaseKey) => (
+          <Line
+            key={phaseKey}
+            type="monotone"
+            // Affiche la valeur seulement si la phase correspond, sinon null
+            dataKey={(d) => d.phase === phaseKey ? d.valueEnd : null}
+            // Couleur verte pour accumulation, rouge pour consommation
+            stroke={phaseKey === "accumulation" ? "#10B981" : "#EF4444"}
+            strokeWidth={2}
+            dot={false} // Pas de points sur la ligne
+            name={phaseKey === "accumulation" ? "Accumulation" : "Consommation"}
+            connectNulls // Continue la ligne même s'il y a des valeurs null
+          />
+        ))}
+      </LineChart>
+    </ResponsiveContainer>
+    
+    {/* Légende personnalisée en bas du graphique */}
+    <div className="flex gap-4 mt-2 text-sm text-gray-600">
+      {/* Indicateur vert pour la phase d'accumulation */}
+      <div className="flex items-center gap-1">
+        <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
+        Accumulation
+      </div>
+      
+      {/* Indicateur rouge pour la phase de consommation */}
+      <div className="flex items-center gap-1">
+        <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
+        Consommation
+      </div>
+    </div>
+  </div>
+</div>
 
               <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
