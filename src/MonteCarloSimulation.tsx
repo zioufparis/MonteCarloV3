@@ -2042,6 +2042,7 @@ const Simulateur = () => {
       worstCase: number;
       lossProbability: number;
     };
+      };
 
                       return (
                       <div
