@@ -773,7 +773,7 @@ const Simulateur = () => {
                 : -parameters.monthlyWithdrawal;
 
             const inflationAdjustedContribution =
-              currentPhaseContribution * Math.pow(1 + yearlyInflation, year);
+              currentPhaseContribution * Math.pow(1 + yearlyInflation, year - 1);
 
             currentValue += inflationAdjustedContribution;
             // Répartition de la contribution mensuelle selon allocation mensuelle définie
