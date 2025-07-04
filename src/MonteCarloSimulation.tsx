@@ -706,13 +706,7 @@ const Simulateur = () => {
       let ruinYear = null;
 
       // Allocations actuelles (pour le rebalancement)
-      let currentAllocations: {
-  realEstate: number;
-  stocks: number;
-  crypto: number;
-  cash: number;
-  other: number;
-} = {
+      let currentAllocations: AllocationMap = {
         realEstate: currentValue * realEstate.allocation,
         stocks: currentValue * stocks.allocation,
         crypto: currentValue * crypto.allocation,
