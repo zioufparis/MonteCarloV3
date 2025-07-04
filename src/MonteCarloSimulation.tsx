@@ -1467,7 +1467,7 @@ const Simulateur = () => {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="date"
-                        tickFormatter={(value) => A${value.split("-")[0]}}
+                        tickFormatter={(value) => `A${value.split("-")[0]}`}
                         interval="preserveStartEnd"
                       />
                       <YAxis tickFormatter={formatEuro} />
