@@ -745,7 +745,8 @@ const Simulateur = () => {
               baseReturns,
               volatilities,
               cholesky
-            );
+              ) as AllocationMap;
+
 
             // Application des rendements aux allocations actuelles
             currentAllocations.realEstate *= 1 + monthlyReturns.realEstate;
