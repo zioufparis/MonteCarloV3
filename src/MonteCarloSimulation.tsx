@@ -1116,11 +1116,11 @@ const Simulateur = () => {
     Utilisez les onglets ci-dessus pour explorer les projections, tester des crises historiques,
     ou évaluer des objectifs spécifiques comme la retraite ou le FIRE.
           Analyse probabiliste de l'évolution de votre patrimoine sur{" "}
-          {parameters.timeHorizon} ans
+          {parameters.timeHorizon} ans. Merci de commencer par l'onglet "Configuration" pour parameter votre portefeuille. 
         </p>
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-700 mb-3">
-            Scénarios Prédéfinis
+            Scénarios Prédéfinis ( Vous pouvez choisir un des scénarios, ou parametrer le votre sur l'onglet "Configuration" )
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {Object.entries(presetScenarios).map(([key, scenario]) => (
@@ -1455,72 +1455,71 @@ const Simulateur = () => {
               </p>
             </div>
 
-            <div className="w-full">
-              {/* Graphique Timeline */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium mb-4">
-                  Évolution Mensuelle du Patrimoine
-                </h3>
-                <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <>
-                    <LineChart data={timelineData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis
-                        dataKey="date"
-                        tickFormatter={(value) => `A${value.split("-")[0]}`}
-                        interval="preserveStartEnd"
-                      />
-                      <YAxis tickFormatter={formatEuro} />
-                      <Tooltip
-                        labelFormatter={(value) => {
-                          const item = timelineData.find(
-                            (t) => t.date === value
-                          );
-                          return item ? item.dateLabel : value;
-                        }}
-                        formatter={(value, name) => {
-                          if (name === "valueEnd")
-                            return [formatEuro(value), "Patrimoine"];
-                          return [formatEuro(value), name];
-                        }}
-                      />
-                      {["accumulation", "consumption"].map((phaseKey) => (
-                        <Line
-                          key={phaseKey}
-                          type="monotone"
-                          dataKey={(d) =>
-                            d.phase === phaseKey ? d.valueEnd : null
-                          }
-                          stroke={
-                            phaseKey === "accumulation" ? "#10B981" : "#EF4444"
-                          } // vert ou rouge
-                          strokeWidth={2}
-                          dot={false}
-                          name={
-                            phaseKey === "accumulation"
-                              ? "Accumulation"
-                              : "Consommation"
-                          }
-                          connectNulls
-                        />
-                      ))}
-                    </LineChart>
-                    <div className="flex gap-4 mt-2 text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
-                        Accumulation
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
-                        Consommation
-                      </div>
-                    </div>
-                       </>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-
+           <div className="w-full">
+  {/* Graphique Timeline */}
+  <div className="bg-white p-6 rounded-lg shadow-sm">
+    <h3 className="text-lg font-medium mb-4">
+      Évolution Mensuelle du Patrimoine
+    </h3>
+    <div className="h-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={timelineData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="date"
+            tickFormatter={(value) => `A${value.split("-")[0]}`}
+            interval="preserveStartEnd"
+          />
+          <YAxis tickFormatter={formatEuro} />
+          <Tooltip
+            labelFormatter={(value) => {
+              const item = timelineData.find(
+                (t) => t.date === value
+              );
+              return item ? item.dateLabel : value;
+            }}
+            formatter={(value, name) => {
+              if (name === "valueEnd")
+                return [formatEuro(value), "Patrimoine"];
+              return [formatEuro(value), name];
+            }}
+          />
+          {["accumulation", "consumption"].map((phaseKey) => (
+            <Line
+              key={phaseKey}
+              type="monotone"
+              dataKey={(d) =>
+                d.phase === phaseKey ? d.valueEnd : null
+              }
+              stroke={
+                phaseKey === "accumulation" ? "#10B981" : "#EF4444"
+              }
+              strokeWidth={2}
+              dot={false}
+              name={
+                phaseKey === "accumulation"
+                  ? "Accumulation"
+                  : "Consommation"
+              }
+              connectNulls
+            />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+    {/* Légende déplacée à l'extérieur du ResponsiveContainer */}
+    <div className="flex gap-4 mt-2 text-sm text-gray-600">
+      <div className="flex items-center gap-1">
+        <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
+        Accumulation
+      </div>
+      <div className="flex items-center gap-1">
+        <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
+        Consommation
+      </div>
+    </div>
+  </div>
+</div>
               <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   📊 Analyses Sophistiquées
@@ -2014,8 +2013,8 @@ const Simulateur = () => {
                 🔥 Tests de Résistance aux Crises Historiques
               </h2>
               <p className="text-gray-600 mb-6">
-                Analysez comment votre portefeuille aurait résisté aux grandes
-                crises financières du passé.
+               Cet onglet vous permet de visualiser l'effet de grandes crises économiques (comme 2008 ou 1929) sur votre portefeuille simulé. 
+  Cliquez sur le bouton ci-dessous pour lancer l'analyse.
               </p>
 
               <div className="flex justify-center mb-6">
