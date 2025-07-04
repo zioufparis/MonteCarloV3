@@ -1633,225 +1633,7 @@ const Simulateur = () => {
                   </div>
                 </div>
               </div>
-              {/* Section Coast FIRE */}
-              <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  🏖️ Analyse Coast FIRE
-                </h2>
-
-                {stats.coastFIRE && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div
-                      className={`p-4 rounded-lg border-2 ${
-                        stats.coastFIRE.hasReachedCoastFIRE
-                          ? "bg-gradient-to-br from-green-50 to-green-100 border-green-300"
-                          : "bg-gradient-to-br from-orange-50 to-orange-100 border-orange-300"
-                      }`}
-                    >
-                      <div className="flex items-center mb-2">
-                        <div
-                          className={`w-3 h-3 rounded-full mr-2 ${
-                            stats.coastFIRE.hasReachedCoastFIRE
-                              ? "bg-green-500"
-                              : "bg-orange-500"
-                          }`}
-                        ></div>
-                        <h3 className="font-semibold text-gray-700">
-                          Seuil Coast FIRE
-                        </h3>
-                      </div>
-                      <div
-                        className={`text-2xl font-bold ${
-                          stats.coastFIRE.hasReachedCoastFIRE
-                            ? "text-green-600"
-                            : "text-orange-600"
-                        }`}
-                      >
-                        {formatEuro(stats.coastFIRE.coastFIREAmount)}
-                      </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        Pour {formatEuro(parameters.retirementGoal)} à{" "}
-                        {parameters.retirementAge} ans
-                      </div>
-                    </div>
-
-                    <div
-                      className={`p-4 rounded-lg border-2 ${
-                        stats.coastFIRE.hasReachedCoastFIRE
-                          ? "bg-gradient-to-br from-green-50 to-green-100 border-green-300"
-                          : "bg-gradient-to-br from-red-50 to-red-100 border-red-300"
-                      }`}
-                    >
-                      <div className="flex items-center mb-2">
-                        <div
-                          className={`w-3 h-3 rounded-full mr-2 ${
-                            stats.coastFIRE.hasReachedCoastFIRE
-                              ? "bg-green-500"
-                              : "bg-red-500"
-                          }`}
-                        ></div>
-                        <h3 className="font-semibold text-gray-700">Statut</h3>
-                      </div>
-                      <div
-                        className={`text-xl font-bold ${
-                          stats.coastFIRE.hasReachedCoastFIRE
-                            ? "text-green-600"
-                            : "text-red-600"
-                        }`}
-                      >
-                        {stats.coastFIRE.hasReachedCoastFIRE
-                          ? "✅ Atteint"
-                          : "❌ Non atteint"}
-                      </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {stats.coastFIRE.hasReachedCoastFIRE
-                          ? "Vous pouvez arrêter d'épargner"
-                          : "Continuez à épargner"}
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
-                      <div className="flex items-center mb-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
-                        <h3 className="font-semibold text-gray-700">
-                          {stats.coastFIRE.hasReachedCoastFIRE
-                            ? "Surplus"
-                            : "Écart"}
-                        </h3>
-                      </div>
-                      <div
-                        className={`text-2xl font-bold ${
-                          stats.coastFIRE.hasReachedCoastFIRE
-                            ? "text-green-600"
-                            : "text-blue-600"
-                        }`}
-                      >
-                        {stats.coastFIRE.hasReachedCoastFIRE ? "+" : ""}
-                        {formatEuro(Math.abs(stats.coastFIRE.gapAmount))}
-                      </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {stats.coastFIRE.hasReachedCoastFIRE
-                          ? "Au-dessus du seuil"
-                          : "Manquant pour Coast FIRE"}
-                      </div>
-                    </div>
-
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
-                      <div className="flex items-center mb-2">
-                        <div className="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
-                        <h3 className="font-semibold text-gray-700">
-                          Retraite possible
-                        </h3>
-                      </div>
-                      <div className="text-2xl font-bold text-purple-600">
-                        {stats.coastFIRE.possibleRetirementAge.toFixed(0)} ans
-                      </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {stats.coastFIRE.hasReachedCoastFIRE
-                          ? `${(
-                              parameters.retirementAge -
-                              stats.coastFIRE.possibleRetirementAge
-                            ).toFixed(0)} ans plus tôt`
-                          : "Âge de retraite cible"}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="p-4 bg-gray-50 rounded-lg">
-                  <h4 className="font-semibold text-gray-700 mb-2">
-                    🧮 Paramètres Coast FIRE
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Âge actuel
-                      </label>
-                      <input
-                        type="number"
-                        value={parameters.currentAge}
-                        onChange={(e) =>
-                          setParameters({
-                            ...parameters,
-                            currentAge: parseInt(e.target.value) || 30,
-                          })
-                        }
-                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Âge retraite
-                      </label>
-                      <input
-                        type="number"
-                        value={parameters.retirementAge}
-                        onChange={(e) =>
-                          setParameters({
-                            ...parameters,
-                            retirementAge: parseInt(e.target.value) || 65,
-                          })
-                        }
-                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Objectif retraite (€)
-                      </label>
-                      <input
-                        type="number"
-                        value={parameters.retirementGoal}
-                        onChange={(e) =>
-                          setParameters({
-                            ...parameters,
-                            retirementGoal: parseInt(e.target.value) || 1000000,
-                          })
-                        }
-                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Rendement réel
-                      </label>
-                      <div className="w-full p-2 border border-gray-200 rounded-md text-sm bg-gray-100">
-                        {(stats.coastFIRE?.portfolioRealReturn * 100)?.toFixed(
-                          2
-                        ) || "0.00"}
-                        %
-                      </div>
-                      <div className="text-xs text-gray-500 mt-1">
-                        Calculé automatiquement
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="text-sm text-gray-600 space-y-1">
-                    <p>
-                      <strong>💡 Coast FIRE :</strong> Le montant nécessaire
-                      aujourd'hui pour atteindre votre objectif retraite sans
-                      épargner davantage.
-                    </p>
-                    <p>
-                      <strong>🎯 Formule :</strong> Objectif Retraite ÷ (1 +
-                      Rendement Réel)^Années =
-                      {formatEuro(parameters.retirementGoal)} ÷ (1 +{" "}
-                      {(
-                        (stats.coastFIRE?.portfolioRealReturn || 0) * 100
-                      ).toFixed(2)}
-                      %)^{parameters.retirementAge - parameters.currentAge}
-                    </p>
-                    {stats.coastFIRE?.hasReachedCoastFIRE && (
-                      <p className="text-green-600 font-medium">
-                        🎉 Félicitations ! Vous avez atteint Coast FIRE. Vous
-                        pouvez réduire votre épargne ou partir plus tôt à la
-                        retraite.
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
+            
               {/* Graphique Rendements vs Contributions */}
             </div>
 
@@ -3232,7 +3014,226 @@ const Simulateur = () => {
                 </div>
               </div>
             </div>
-          </div>
+             {/* Section Coast FIRE */}
+              <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  🏖️ Analyse Coast FIRE
+                </h2>
+
+                {stats.coastFIRE && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div
+                      className={`p-4 rounded-lg border-2 ${
+                        stats.coastFIRE.hasReachedCoastFIRE
+                          ? "bg-gradient-to-br from-green-50 to-green-100 border-green-300"
+                          : "bg-gradient-to-br from-orange-50 to-orange-100 border-orange-300"
+                      }`}
+                    >
+                      <div className="flex items-center mb-2">
+                        <div
+                          className={`w-3 h-3 rounded-full mr-2 ${
+                            stats.coastFIRE.hasReachedCoastFIRE
+                              ? "bg-green-500"
+                              : "bg-orange-500"
+                          }`}
+                        ></div>
+                        <h3 className="font-semibold text-gray-700">
+                          Seuil Coast FIRE
+                        </h3>
+                      </div>
+                      <div
+                        className={`text-2xl font-bold ${
+                          stats.coastFIRE.hasReachedCoastFIRE
+                            ? "text-green-600"
+                            : "text-orange-600"
+                        }`}
+                      >
+                        {formatEuro(stats.coastFIRE.coastFIREAmount)}
+                      </div>
+                      <div className="text-sm text-gray-600 mt-1">
+                        Pour {formatEuro(parameters.retirementGoal)} à{" "}
+                        {parameters.retirementAge} ans
+                      </div>
+                    </div>
+
+                    <div
+                      className={`p-4 rounded-lg border-2 ${
+                        stats.coastFIRE.hasReachedCoastFIRE
+                          ? "bg-gradient-to-br from-green-50 to-green-100 border-green-300"
+                          : "bg-gradient-to-br from-red-50 to-red-100 border-red-300"
+                      }`}
+                    >
+                      <div className="flex items-center mb-2">
+                        <div
+                          className={`w-3 h-3 rounded-full mr-2 ${
+                            stats.coastFIRE.hasReachedCoastFIRE
+                              ? "bg-green-500"
+                              : "bg-red-500"
+                          }`}
+                        ></div>
+                        <h3 className="font-semibold text-gray-700">Statut</h3>
+                      </div>
+                      <div
+                        className={`text-xl font-bold ${
+                          stats.coastFIRE.hasReachedCoastFIRE
+                            ? "text-green-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {stats.coastFIRE.hasReachedCoastFIRE
+                          ? "✅ Atteint"
+                          : "❌ Non atteint"}
+                      </div>
+                      <div className="text-sm text-gray-600 mt-1">
+                        {stats.coastFIRE.hasReachedCoastFIRE
+                          ? "Vous pouvez arrêter d'épargner"
+                          : "Continuez à épargner"}
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200">
+                      <div className="flex items-center mb-2">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                        <h3 className="font-semibold text-gray-700">
+                          {stats.coastFIRE.hasReachedCoastFIRE
+                            ? "Surplus"
+                            : "Écart"}
+                        </h3>
+                      </div>
+                      <div
+                        className={`text-2xl font-bold ${
+                          stats.coastFIRE.hasReachedCoastFIRE
+                            ? "text-green-600"
+                            : "text-blue-600"
+                        }`}
+                      >
+                        {stats.coastFIRE.hasReachedCoastFIRE ? "+" : ""}
+                        {formatEuro(Math.abs(stats.coastFIRE.gapAmount))}
+                      </div>
+                      <div className="text-sm text-gray-600 mt-1">
+                        {stats.coastFIRE.hasReachedCoastFIRE
+                          ? "Au-dessus du seuil"
+                          : "Manquant pour Coast FIRE"}
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200">
+                      <div className="flex items-center mb-2">
+                        <div className="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                        <h3 className="font-semibold text-gray-700">
+                          Retraite possible
+                        </h3>
+                      </div>
+                      <div className="text-2xl font-bold text-purple-600">
+                        {stats.coastFIRE.possibleRetirementAge.toFixed(0)} ans
+                      </div>
+                      <div className="text-sm text-gray-600 mt-1">
+                        {stats.coastFIRE.hasReachedCoastFIRE
+                          ? `${(
+                              parameters.retirementAge -
+                              stats.coastFIRE.possibleRetirementAge
+                            ).toFixed(0)} ans plus tôt`
+                          : "Âge de retraite cible"}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-700 mb-2">
+                    🧮 Paramètres Coast FIRE
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Âge actuel
+                      </label>
+                      <input
+                        type="number"
+                        value={parameters.currentAge}
+                        onChange={(e) =>
+                          setParameters({
+                            ...parameters,
+                            currentAge: parseInt(e.target.value) || 30,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Âge retraite
+                      </label>
+                      <input
+                        type="number"
+                        value={parameters.retirementAge}
+                        onChange={(e) =>
+                          setParameters({
+                            ...parameters,
+                            retirementAge: parseInt(e.target.value) || 65,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Objectif retraite (€)
+                      </label>
+                      <input
+                        type="number"
+                        value={parameters.retirementGoal}
+                        onChange={(e) =>
+                          setParameters({
+                            ...parameters,
+                            retirementGoal: parseInt(e.target.value) || 1000000,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded-md text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Rendement réel
+                      </label>
+                      <div className="w-full p-2 border border-gray-200 rounded-md text-sm bg-gray-100">
+                        {(stats.coastFIRE?.portfolioRealReturn * 100)?.toFixed(
+                          2
+                        ) || "0.00"}
+                        %
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        Calculé automatiquement
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-sm text-gray-600 space-y-1">
+                    <p>
+                      <strong>💡 Coast FIRE :</strong> Le montant nécessaire
+                      aujourd'hui pour atteindre votre objectif retraite sans
+                      épargner davantage.
+                    </p>
+                    <p>
+                      <strong>🎯 Formule :</strong> Objectif Retraite ÷ (1 +
+                      Rendement Réel)^Années =
+                      {formatEuro(parameters.retirementGoal)} ÷ (1 +{" "}
+                      {(
+                        (stats.coastFIRE?.portfolioRealReturn || 0) * 100
+                      ).toFixed(2)}
+                      %)^{parameters.retirementAge - parameters.currentAge}
+                    </p>
+                    {stats.coastFIRE?.hasReachedCoastFIRE && (
+                      <p className="text-green-600 font-medium">
+                        🎉 Félicitations ! Vous avez atteint Coast FIRE. Vous
+                        pouvez réduire votre épargne ou partir plus tôt à la
+                        retraite.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
         )}
 
         {/* Graphique principal */}
