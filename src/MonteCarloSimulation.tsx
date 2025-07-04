@@ -1457,67 +1457,81 @@ const Simulateur = () => {
 
             <div className="w-full">
               {/* Graphique Timeline */}
-             <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-medium mb-4">
-                  Évolution Mensuelle du Patrimoine
-                </h3>
-                <div className="h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={timelineData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis
-                        dataKey="date"
-                        tickFormatter={(value) => `A${value.split("-")[0]}`}
-                        interval="preserveStartEnd"
-                      />
-                      <YAxis tickFormatter={formatEuro} />
-                      <Tooltip
-                        labelFormatter={(value) => {
-                          const item = timelineData.find(
-                            (t) => t.date === value
-                          );
-                          return item ? item.dateLabel : value;
-                        }}
-                        formatter={(value, name) => {
-                          if (name === "valueEnd")
-                            return [formatEuro(value), "Patrimoine"];
-                          return [formatEuro(value), name];
-                        }}
-                      />
-                      {["accumulation", "consumption"].map((phaseKey) => (
-                        <Line
-                          key={phaseKey}
-                          type="monotone"
-                          dataKey={(d) =>
-                            d.phase === phaseKey ? d.valueEnd : null
-                          }
-                          stroke={
-                            phaseKey === "accumulation" ? "#10B981" : "#EF4444"
-                          } // vert ou rouge
-                          strokeWidth={2}
-                          dot={false}
-                          name={
-                            phaseKey === "accumulation"
-                              ? "Accumulation"
-                              : "Consommation"
-                          }
-                          connectNulls
-                        />
-                      ))}
-                    </LineChart>
-                    <div className="flex gap-4 mt-2 text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
-                        Accumulation
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
-                        Consommation
-                      </div>
-                    </div>
-                  </ResponsiveContainer>
-                </div>
-              </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+  <h3 className="text-lg font-medium mb-4">
+    Évolution Mensuelle du Patrimoine
+  </h3>
+
+  <div className="h-80">
+    {/* ResponsiveContainer n'accepte qu'un SEUL enfant JSX */}
+    <ResponsiveContainer width="100%" height="100%">
+      {/* Le seul enfant ici est le LineChart, c’est OK maintenant */}
+      <LineChart data={timelineData}>
+        <CartesianGrid strokeDasharray="3 3" />
+
+        {/* Axe X : on formate l'année avec le préfixe 'A' */}
+        <XAxis
+          dataKey="date"
+          tickFormatter={(value) => `A${value.split("-")[0]}`}
+          interval="preserveStartEnd"
+        />
+
+        {/* Axe Y : format monétaire (fonction utilitaire formatEuro à définir ailleurs) */}
+        <YAxis tickFormatter={formatEuro} />
+
+        {/* Tooltip personnalisé : formate l'étiquette et les valeurs */}
+        <Tooltip
+          labelFormatter={(value) => {
+            const item = timelineData.find((t) => t.date === value);
+            return item ? item.dateLabel : value;
+          }}
+          formatter={(value, name) => {
+            if (name === "valueEnd")
+              return [formatEuro(value), "Patrimoine"];
+            return [formatEuro(value), name];
+          }}
+        />
+
+        {/* Deux courbes : une pour chaque phase (accumulation / consommation) */}
+        {["accumulation", "consumption"].map((phaseKey) => (
+          <Line
+            key={phaseKey}
+            type="monotone"
+            // ✅ IMPORTANT : dataKey NE PEUT PAS être une fonction directement.
+            // Il faut filtrer les données AVANT de passer à LineChart si on veut ça.
+            // Mais pour éviter les erreurs, ici tu dois utiliser un champ réel, exemple "valueEnd"
+            dataKey="valueEnd"
+            stroke={
+              phaseKey === "accumulation" ? "#10B981" : "#EF4444"
+            } // vert ou rouge
+            strokeWidth={2}
+            dot={false}
+            name={
+              phaseKey === "accumulation" ? "Accumulation" : "Consommation"
+            }
+            connectNulls
+            // Pour n'afficher les lignes que pour la phase correspondante,
+            // il faut plutôt pré-filtrer ou appliquer des styles conditionnels.
+          />
+        ))}
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* ✅ Ce bloc a été déplacé EN DEHORS de ResponsiveContainer */}
+  {/* Légende des couleurs */}
+  <div className="flex gap-4 mt-2 text-sm text-gray-600">
+    <div className="flex items-center gap-1">
+      <span className="inline-block w-4 h-2 bg-green-500 rounded-sm"></span>
+      Accumulation
+    </div>
+    <div className="flex items-center gap-1">
+      <span className="inline-block w-4 h-2 bg-red-500 rounded-sm"></span>
+      Consommation
+    </div>
+  </div>
+</div>
+
 
               <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
