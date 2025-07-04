@@ -190,7 +190,7 @@ const Simulateur = () => {
     // Nouveaux paramètres avancés
     inflation: 0.02, // 2% par an
     taxRate: 0.3, // 30% sur les plus-values
-    rebalancingFrequency: 12, // Tous les 12 mois (1 = mensuel, 12 = annuel, 0 = jamais)
+    rebalancingFrequency: 24, // Tous les 2 ans (60 = 5ans, 12 = annuel, 0 = jamais)
     realEstate: { allocation: 0.5, return: 0.035, volatility: 0.12 },
     stocks: { allocation: 0.3, return: 0.05, volatility: 0.18 },
     crypto: { allocation: 0.05, return: 0.1, volatility: 0.45 },
@@ -233,7 +233,7 @@ const Simulateur = () => {
       crypto: { allocation: 0.02, return: 0.08, volatility: 0.35 },
       cash: { allocation: 0.35, return: -0.015, volatility: 0.01 },
       other: { allocation: 0.13, return: 0.02, volatility: 0.05 },
-      rebalancingFrequency: 6,
+      rebalancingFrequency: 12,
     },
     equilibre: {
       name: "⚖️ Équilibré",
@@ -243,7 +243,7 @@ const Simulateur = () => {
       crypto: { allocation: 0.13, return: 0.1, volatility: 0.45 },
       cash: { allocation: 0.06, return: -0.02, volatility: 0.02 },
       other: { allocation: 0.05, return: 0.02, volatility: 0.08 },
-      rebalancingFrequency: 12,
+      rebalancingFrequency: 24,
     },
     agressif: {
       name: "🚀 Agressif",
@@ -253,7 +253,7 @@ const Simulateur = () => {
       crypto: { allocation: 0.2, return: 0.12, volatility: 0.55 },
       cash: { allocation: 0.02, return: -0.025, volatility: 0.01 },
       other: { allocation: 0.03, return: 0.025, volatility: 0.1 },
-      rebalancingFrequency: 12,
+      rebalancingFrequency: 60,
     },
   } as const;
 
@@ -2371,9 +2371,9 @@ const Simulateur = () => {
                   className="w-full p-2 border border-blue-300 rounded-md"
                 >
                   <option value={0}>Jamais</option>
-                  <option value={1}>Mensuel</option>
-                  <option value={3}>Trimestriel</option>
-                  <option value={6}>Semestriel</option>
+                  <option value={60}>5ans</option>
+                  <option value={36}>3ans</option>
+                  <option value={24}>2ans</option>
                   <option value={12}>Annuel</option>
                 </select>
                 <div className="text-xs text-blue-600 mt-1">
@@ -3446,12 +3446,12 @@ const Simulateur = () => {
               {(parameters.taxRate * 100).toFixed(0)}%), rebalancement{" "}
               {parameters.rebalancingFrequency === 0
                 ? "désactivé"
-                : parameters.rebalancingFrequency === 1
-                ? "mensuel"
-                : parameters.rebalancingFrequency === 3
-                ? "trimestriel"
-                : parameters.rebalancingFrequency === 6
-                ? "semestriel"
+                : parameters.rebalancingFrequency === 60
+                ? "5ans"
+                : parameters.rebalancingFrequency === 36
+                ? "3ans"
+                : parameters.rebalancingFrequency === 24
+                ? "2ans"
                 : "annuel"}
               .
             </p>
