@@ -1460,6 +1460,7 @@ const Simulateur = () => {
                 </h3>
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
+                    <>
                     <LineChart data={timelineData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
@@ -1512,6 +1513,7 @@ const Simulateur = () => {
                         Consommation
                       </div>
                     </div>
+                       </>
                   </ResponsiveContainer>
                 </div>
               </div>
