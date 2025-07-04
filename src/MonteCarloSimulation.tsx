@@ -1116,11 +1116,11 @@ const Simulateur = () => {
     Utilisez les onglets ci-dessus pour explorer les projections, tester des crises historiques,
     ou évaluer des objectifs spécifiques comme la retraite ou le FIRE.
           Analyse probabiliste de l'évolution de votre patrimoine sur{" "}
-          {parameters.timeHorizon} ans
+          {parameters.timeHorizon} ans. 
         </p>
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-700 mb-3">
-            Scénarios Prédéfinis
+            Scénarios Prédéfinis (repartition prédéfinis de  portfeuille, sinon l'onglet "Configuration" pour parametrer le votre)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {Object.entries(presetScenarios).map(([key, scenario]) => (
@@ -2014,8 +2014,8 @@ const Simulateur = () => {
                 🔥 Tests de Résistance aux Crises Historiques
               </h2>
               <p className="text-gray-600 mb-6">
-                Analysez comment votre portefeuille aurait résisté aux grandes
-                crises financières du passé.
+                 Cet onglet vous permet de visualiser l'effet de grandes crises économiques (comme 2008 ou 1929) sur votre portefeuille simulé. 
+  Cliquez sur le bouton ci-dessous pour lancer l'analyse.
               </p>
 
               <div className="flex justify-center mb-6">
