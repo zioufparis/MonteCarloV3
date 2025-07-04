@@ -185,24 +185,24 @@ const Simulateur = () => {
   const [parameters, setParameters] = useState({
     initialValue: 300000,
     timeHorizon: 30,
-    monthlyContribution: 500,
+    monthlyContribution: 1000,
     simulations: 5000,
     // Nouveaux paramètres avancés
-    inflation: 0.025, // 2.5% par an
+    inflation: 0.02, // 2% par an
     taxRate: 0.3, // 30% sur les plus-values
     rebalancingFrequency: 12, // Tous les 12 mois (1 = mensuel, 12 = annuel, 0 = jamais)
-    realEstate: { allocation: 0.42, return: 0.035, volatility: 0.12 },
-    stocks: { allocation: 0.34, return: 0.05, volatility: 0.18 },
-    crypto: { allocation: 0.13, return: 0.1, volatility: 0.45 },
-    cash: { allocation: 0.06, return: -0.02, volatility: 0.02 },
+    realEstate: { allocation: 0.5, return: 0.035, volatility: 0.12 },
+    stocks: { allocation: 0.3, return: 0.05, volatility: 0.18 },
+    crypto: { allocation: 0.05, return: 0.1, volatility: 0.45 },
+    cash: { allocation: 0.1, return: -0.02, volatility: 0.02 },
     other: { allocation: 0.05, return: 0.02, volatility: 0.08 },
     // Paramètres Coast FIRE
     currentAge: 30,
     retirementAge: 65,
     retirementGoal: 1000000,
     // Phase accumulation / consommation
-    accumulationYears: 10, // par défaut : 10 ans d’épargne
-    consumptionYears: 20, // puis 20 ans de consommation
+    accumulationYears: 15, // par défaut : 10 ans d’épargne
+    consumptionYears: 15, // puis 20 ans de consommation
     monthlyWithdrawal: 1500, // montant retiré chaque mois pendant la retraite
     monthlyWithdrawalAllocation: {
       realEstate: 0.3,
@@ -217,10 +217,10 @@ const Simulateur = () => {
     // Nouvelle répartition des versements mensuels (allocation des contributions)
     monthlyAllocation: {
       realEstate: 0.5,
-      stocks: 0.5,
-      crypto: 0,
-      cash: 0,
-      other: 0,
+      stocks: 0.3,
+      crypto: 0.05,
+      cash: 0.1,
+      other: 0.05,
     },
   });
   // Scénarios prédéfinis
