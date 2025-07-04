@@ -2039,7 +2039,7 @@ const Simulateur = () => {
                         className="border border-red-200 rounded-lg p-6 bg-red-50"
                       >
                         <h3 className="text-lg font-semibold text-red-800 mb-2">
-                          {crisis.name}
+                          {typedCrisis.name}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                           <div className="bg-white p-4 rounded-lg">
