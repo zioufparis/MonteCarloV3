@@ -183,9 +183,9 @@ const Simulateur = () => {
   };
   const [activeTab, setActiveTab] = useState("evolution");
   const [parameters, setParameters] = useState({
-    initialValue: 300000,
-    timeHorizon: 30,
-    monthlyContribution: 1000,
+    initialValue: 200000,
+    timeHorizon: 40,
+    monthlyContribution: 1500,
     simulations: 5000,
     // Nouveaux paramètres avancés
     inflation: 0.02, // 2% par an
@@ -198,12 +198,12 @@ const Simulateur = () => {
     other: { allocation: 0.05, return: 0.02, volatility: 0.08 },
     // Paramètres Coast FIRE
     currentAge: 30,
-    retirementAge: 65,
-    retirementGoal: 1000000,
+    retirementAge: 60,
+    retirementGoal: 700000,
     // Phase accumulation / consommation
-    accumulationYears: 15, // par défaut : 10 ans d’épargne
-    consumptionYears: 15, // puis 20 ans de consommation
-    monthlyWithdrawal: 1500, // montant retiré chaque mois pendant la retraite
+    accumulationYears: 25, // par défaut : 25 ans d’épargne
+    consumptionYears: 15, // puis 15 ans de consommation
+    monthlyWithdrawal: 2500, // montant retiré chaque mois pendant la retraite
     monthlyWithdrawalAllocation: {
       realEstate: 0.3,
       stocks: 0.5,
@@ -213,7 +213,7 @@ const Simulateur = () => {
     },
 
    
-    currentSavings: 300000, // Utilise initialValue par défaut
+    currentSavings: 200000, // Utilise initialValue par défaut
     // Nouvelle répartition des versements mensuels (allocation des contributions)
     monthlyAllocation: {
       realEstate: 0.5,
