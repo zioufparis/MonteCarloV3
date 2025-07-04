@@ -3067,7 +3067,7 @@ const Simulateur = () => {
                         </div>
                         <div className="text-right">
                           <div className="font-bold">
-                            {(val * 100).toFixed(1)}%
+                           {(Number(val) * 100).toFixed(1)}%
                           </div>
                           <div className="text-sm text-gray-600">
                             {formatEuro(stats.median * val)}
