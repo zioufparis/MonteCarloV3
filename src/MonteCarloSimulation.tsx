@@ -2057,7 +2057,7 @@ const Simulateur = () => {
                               Impacts de la crise
                             </h4>
                             <div className="space-y-1 text-sm">
-                              {Object.entries(crisis.impacts).map(
+                              {Object.entries(typedCrisis.impacts).map(
                                 ([asset, impact]) => (
                                   <div
                                     key={asset}
@@ -2092,9 +2092,9 @@ const Simulateur = () => {
                               Caractéristiques
                             </h4>
                             <div className="space-y-1 text-sm text-gray-600">
-                              <div>Durée: {crisis.duration} mois</div>
+                              <div>Durée: {typedCrisis.duration} mois</div>
                               <div>
-                                Récupération: {crisis.recoveryTime} mois
+                                Récupération: {typedCrisis.recoveryTime} mois
                               </div>
                             </div>
                           </div>
@@ -2110,19 +2110,19 @@ const Simulateur = () => {
                                 Valeur moyenne
                               </div>
                               <div className="font-semibold text-lg">
-                                {formatEuro(crisis.results.mean)}
+                                {formatEuro(typedCrisis.results.mean)}
                               </div>
                             </div>
                             <div className="text-center">
                               <div className="text-gray-500">Médiane</div>
                               <div className="font-semibold text-lg">
-                                {formatEuro(crisis.results.median)}
+                                {formatEuro(typedCrisis.results.median)}
                               </div>
                             </div>
                             <div className="text-center">
                               <div className="text-gray-500">Pire cas</div>
                               <div className="font-semibold text-lg text-red-600">
-                                {formatEuro(crisis.results.worstCase)}
+                                {formatEuro(typedCrisis.results.worstCase)}
                               </div>
                             </div>
                             <div className="text-center">
@@ -2130,7 +2130,7 @@ const Simulateur = () => {
                                 Prob. de perte
                               </div>
                               <div className="font-semibold text-lg text-red-600">
-                                {crisis.results.lossProbability.toFixed(1)}%
+                                {typedCrisis.results.lossProbability.toFixed(1)}%
                               </div>
                             </div>
                           </div>
