@@ -1457,7 +1457,7 @@ const Simulateur = () => {
 
             <div className="w-full">
               {/* Graphique Timeline */}
-         <div className="bg-white p-6 rounded-lg shadow-sm">
+       <div className="bg-white p-6 rounded-lg shadow-sm">
   <h3 className="text-lg font-medium mb-4">
     Évolution Mensuelle du Patrimoine
   </h3>
@@ -1476,8 +1476,13 @@ const Simulateur = () => {
           interval="preserveStartEnd" 
         />
         
-        {/* Axe Y : affiche les valeurs en format euro */}
-        <YAxis tickFormatter={formatEuro} />
+        {/* Axe Y : affiche les valeurs en format euro avec meilleure lisibilité */}
+        <YAxis 
+          tickFormatter={formatEuro}
+          width={80}              // Largeur fixe pour éviter la troncature
+          tick={{ fontSize: 12 }} // Taille de police plus petite si nécessaire
+          domain={['dataMin', 'dataMax']} // Ajuste automatiquement les limites
+        />
         
         {/* Tooltip personnalisé qui affiche les détails au survol */}
         <Tooltip 
