@@ -741,7 +741,7 @@ const Simulateur = () => {
             let monthlyReturns: AllocationMap;
 
             // Génération des rendements corrélés
-            const monthlyReturns = generateCorrelatedReturns(
+              monthlyReturns = generateCorrelatedReturns(
               baseReturns,
               volatilities,
               cholesky
