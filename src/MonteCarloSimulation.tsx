@@ -2043,6 +2043,7 @@ const Simulateur = () => {
       lossProbability: number;
     };
       };
+                            };
 
                       return (
                       <div
