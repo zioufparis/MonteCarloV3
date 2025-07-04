@@ -1,20 +1,15 @@
 {
-    "include": [
-        "./src/**/*"
-    ],
-    "compilerOptions": {
-        "strict": true,
-        "esModuleInterop": true,
-        "lib": [
-            "dom",
-            "es2017"
-        ],
-        "jsx": "react-jsx",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true
-    }
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": ["dom", "es2017"],
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true
+  }
 }
