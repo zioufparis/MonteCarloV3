@@ -1009,7 +1009,8 @@ const Simulateur = () => {
 );
 
     const finalAllocPercentages = Object.fromEntries(
-      Object.entries(finalAllocationsSim).map(([k, v]) => [k, v / totalFinal])
+      Object.entries(finalAllocationsSim).map(([k, v]) => [k, (v as number) / totalFinal])
+
     );
 
     // 🔁 Met à jour ce qui est affiché
