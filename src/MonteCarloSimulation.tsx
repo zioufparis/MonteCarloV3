@@ -2030,7 +2030,10 @@ const Simulateur = () => {
               {showStressTest && Object.keys(stressTestResults).length > 0 && (
                 <div className="space-y-6">
                   {Object.entries(stressTestResults).map(
-                    ([crisisKey, crisis]) => (
+                    ([crisisKey, crisis]) => {
+                      const typedCrisis = crisis as { name: string };
+
+                      return (
                       <div
                         key={crisisKey}
                         className="border border-red-200 rounded-lg p-6 bg-red-50"
