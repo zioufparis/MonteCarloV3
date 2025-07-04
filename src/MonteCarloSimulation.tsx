@@ -1003,10 +1003,11 @@ const Simulateur = () => {
       console.warn("⚠️ Aucune allocation trouvée dans la simulation médiane !");
     }
 
-    const totalFinal = Object.values(finalAllocationsSim).reduce(
-      (a, b) => a + b,
-      0
-    );
+    const totalFinal = Object.values(finalAllocationsSim as AllocationMap).reduce(
+  (a, b) => a + b,
+  0
+);
+
     const finalAllocPercentages = Object.fromEntries(
       Object.entries(finalAllocationsSim).map(([k, v]) => [k, v / totalFinal])
     );
