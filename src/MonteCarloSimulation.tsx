@@ -463,9 +463,7 @@ const Simulateur = () => {
                 (normalRandom() * ot.volatility) / Math.sqrt(12));
 
           currentValue *= 1 + portfolioReturn;
-          currentValue +=
-            stressParams.monthlyContribution *
-            Math.pow(1 + stressParams.inflation, year);
+          
           currentValue = Math.max(0, currentValue);
         }
       }
