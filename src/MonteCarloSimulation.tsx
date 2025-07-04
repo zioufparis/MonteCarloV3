@@ -2948,7 +2948,7 @@ const Simulateur = () => {
                                 : key === "cash"
                                 ? "💰 Liquidités"
                                 : "🔧 Autres",
-                            value: val * 100,
+                            value: Number(val) * 100,
                             color:
                               key === "realEstate"
                                 ? "#8B5CF6"
