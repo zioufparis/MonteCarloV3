@@ -1112,6 +1112,9 @@ const Simulateur = () => {
           Simulation Monte Carlo - Évolution Patrimoine
         </h1>
         <p className="text-gray-600 mb-6">
+          Cet outil vous permet de simuler différents scénarios financiers pour mieux planifier votre avenir.
+    Utilisez les onglets ci-dessus pour explorer les projections, tester des crises historiques,
+    ou évaluer des objectifs spécifiques comme la retraite ou le FIRE.
           Analyse probabiliste de l'évolution de votre patrimoine sur{" "}
           {parameters.timeHorizon} ans
         </p>
