@@ -2032,18 +2032,18 @@ const Simulateur = () => {
                   {Object.entries(stressTestResults).map(
                     ([crisisKey, crisis]) => {
                       const typedCrisis = crisis as {
-    name: string;
-    duration: number;
-    recoveryTime: number;
-    impacts: Record<string, number>;
-    results: {
-      mean: number;
-      median: number;
-      worstCase: number;
-      lossProbability: number;
-    };
-      };                                 
-                      return (
+                        name: string;
+                        duration: number;
+                        recoveryTime: number;
+                        impacts: Record<string, number>;
+                        results: {
+                        mean: number;
+                        median: number;
+                        worstCase: number;
+                        lossProbability: number;
+                           };
+                         };                                 
+                    return (
                       <div
                         key={crisisKey}
                         className="border border-red-200 rounded-lg p-6 bg-red-50"
@@ -2136,7 +2136,8 @@ const Simulateur = () => {
                           </div>
                         </div>
                       </div>
-                    )
+                  );
+                    }
                   )}
                 </div>
               )}
