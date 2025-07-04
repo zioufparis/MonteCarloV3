@@ -756,10 +756,7 @@ const Simulateur = () => {
               (sum, val) => sum + val,
               0
             );
-          const valueAfterReturn = valueBeforeReturn * (1 + portfolioReturn);
-const monthlyReturn = valueAfterReturn - valueBeforeReturn;
-// PUIS ajouter les contributions
-currentValue = valueAfterReturn + inflationAdjustedContribution;
+          const monthlyReturn = (valueBeforeReturn * portfolioReturn);
 
             currentValue = valueAfterReturn;
             // Ajout de la contribution mensuelle (ajustée pour l'inflation)
