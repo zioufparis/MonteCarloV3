@@ -212,10 +212,7 @@ const Simulateur = () => {
       other: 0.05,
     },
 
-    accumulationYears: 10, // Nombre d'années à épargner
-    consumptionYears: 20, // Nombre d'années à consommer
-    monthlyWithdrawal: 1500, // Retrait mensuel pendant la phase de décumulation
-
+   
     currentSavings: 300000, // Utilise initialValue par défaut
     // Nouvelle répartition des versements mensuels (allocation des contributions)
     monthlyAllocation: {
