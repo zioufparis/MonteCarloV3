@@ -1457,18 +1457,17 @@ const Simulateur = () => {
 
             <div className="w-full">
               {/* Graphique Timeline */}
-              <div className="bg-white p-6 rounded-lg shadow-sm">
+             <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-lg font-medium mb-4">
                   Évolution Mensuelle du Patrimoine
                 </h3>
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
-                    <>
                     <LineChart data={timelineData}>
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="date"
-                        tickFormatter={(value) => `A${value.split("-")[0]}`}
+                        tickFormatter={(value) => A${value.split("-")[0]}}
                         interval="preserveStartEnd"
                       />
                       <YAxis tickFormatter={formatEuro} />
@@ -1516,7 +1515,6 @@ const Simulateur = () => {
                         Consommation
                       </div>
                     </div>
-                       </>
                   </ResponsiveContainer>
                 </div>
               </div>
