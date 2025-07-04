@@ -671,6 +671,14 @@ const Simulateur = () => {
       recoveryTime: 18,
     },
   };
+  type AllocationMap = {
+  realEstate: number;
+  stocks: number;
+  crypto: number;
+  cash: number;
+  other: number;
+};
+
   const runSimulation = () => {
     const {
       initialValue,
