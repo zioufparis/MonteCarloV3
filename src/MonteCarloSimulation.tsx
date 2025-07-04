@@ -2029,19 +2029,23 @@ const Simulateur = () => {
 
               {showStressTest && Object.keys(stressTestResults).length > 0 && (
                 <div className="space-y-6">
+                  type CrisisData = {
+  name: string;
+  duration: number;
+  recoveryTime: number;
+  impacts: Record<string, number>;
+  results: {
+    mean: number;
+    median: number;
+    worstCase: number;
+    lossProbability: number;
+  };
+};
+
                   {Object.entries(stressTestResults).map(
                     ([crisisKey, crisis]) => {
-                      const typedCrisis = crisis as {
-    name: string;
-    duration: number;
-    recoveryTime: number;
-    impacts: Record<string, number>;
-    results: {
-      mean: number;
-      median: number;
-      worstCase: number;
-      lossProbability: number;
-    };
+                      const typedCrisis = crisis as CrisisData;
+
       };
                     
 
